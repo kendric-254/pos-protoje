@@ -33,6 +33,7 @@ const Home = () => {
                         <Route path="/sales">
                             <SalesPage/>
                         </Route>
+                        
                     </Switch>
                 </div>
                 

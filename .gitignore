@@ -4,8 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/components/loginForm.js
+# /src/components/loginForm.js
 /src/components/registerForm.js
+
 
 # testing
 /coverage
