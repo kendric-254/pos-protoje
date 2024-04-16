@@ -1,10 +1,27 @@
 const express = require('express')
 const app = express();
 const adminRoute = require('./routes/adminRoute')
+// const createHttpError = require('http-errors');
+const cors = require('cors');
+const { default: helmet } = require('helmet');
+const { default: rateLimit } = require('express-rate-limit');
 
+
+const limiter = rateLimit({
+    max: 100,
+    windowMs: 60 * 60 * 1000,
+    message: 'Too many requests from this IP, please try again in 15 minutes'
+})
+
+app.use(helmet());
+app.use('/api', limiter)
 require('./model/dbConnect')
 require('dotenv').config()
 
+const corOptions = {
+    origin : 'http://localhost:3000'
+}
+app.use(cors(corOptions))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -30,9 +47,9 @@ app.use((err, req, res, next) => {
     }
 });
 
-app.use(async(req, res, next)=> {
-    next(createHttpError.NotFound())
-})
+// app.use(async(req, res, next)=> {
+//     next(createHttpError.NotFound())
+// })
 
 
 
