@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 # /src/components/loginForm.js
-/src/components/registerForm.js
+# /src/components/registerForm.js
 
 
 # testing

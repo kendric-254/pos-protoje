@@ -79,7 +79,7 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleLogin} className="flex flex-col items-center justify-center mt-10  shadow-2xl shadow-blue-500 h-96 gap-4">
+    <form onSubmit={handleLogin} className="flex flex-col items-center justify-center mt-10  shadow-2xl shadow-blue-500 h-96 gap-2">
       <h1 className='text-2xl text-center font-bold mb-4'>Sign In</h1>
       <label>Enter Your Email</label>
       <input
