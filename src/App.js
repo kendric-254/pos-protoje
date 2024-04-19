@@ -6,6 +6,7 @@ import SalesPage from "./components/sales";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import LoginForm from "./components/loginForm";
 import RegistrationForm from "./components/registerForm";
+import ReportsData from "./components/reportForm";
 
 function App() {
   return (
@@ -39,10 +40,10 @@ function AppContent() {
                   </Route>
                   <Route path="/sales">
                     <SalesPage />
-                  {/* </Route>
-                  <Route exact path="/loginForm">
-                <LoginForm /> */}
-              </Route>
+                  </Route>
+                  <Route path="/reportForm">
+                      <ReportsData/>
+                    </Route>
 
                 </>
               ) : (

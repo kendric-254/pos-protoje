@@ -18,7 +18,7 @@ const Navbar = () => {
         <nav className="navbar bg-gray-500 flex flex-col lg:flex-row w-auto items-center ml-0  p-5">
             {/* Left section */}
             <div className="mr-0 lg:mr-5">
-                <h1 className="text-2xl lg:text-3xl">Categories</h1>
+                <h1 className="text-2xl lg:text-3xl">Welcome </h1>
             </div>
             <div className="form ">
                 <form className="flex items-center">

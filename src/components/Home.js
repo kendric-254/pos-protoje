@@ -16,9 +16,7 @@ import { BrowserRouter as Route, Switch } from "react-router-dom/cjs/react-route
 import Dashboard from "./dashboard";
 import SalesPage from "./sales";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom";
-// import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
-// import Navbar from "./NavBar";
-
+import ReportsData from "./reportForm";
 
 
 const Home = () => {
@@ -33,7 +31,9 @@ const Home = () => {
                         <Route path="/sales">
                             <SalesPage/>
                         </Route>
-                        
+                        <Route path="/reportForm">
+                            <ReportsData/>
+                        </Route>
                     </Switch>
                 </div>
                 
