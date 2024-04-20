@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 const GameShop = () => {
   const initialStock = [
-    { id: 1, name: 'Game A', price: 20, quantity: 10 },
-    { id: 2, name: 'Game B', price: 30, quantity: 15 },
-    { id: 3, name: 'Game C', price: 25, quantity: 5 },
+    { id: 1, name: 'The Witcher 3 : Wild Hunt', price: 20, quantity: 10 },
+    { id: 2, name: 'CyberPunk 2077', price: 30, quantity: 15 },
+    { id: 3, name: 'Red Dead Redemption 2', price: 25, quantity: 5 },
   ];
 
   const [stock, setStock] = useState(initialStock);
@@ -35,8 +35,8 @@ const GameShop = () => {
             <li key={item.id} className="bg-gray-100 p-4 rounded-lg">
               <div className="flex justify-between items-center">
                 <div>
-                  <h3 className="text-lg font-semibold">{item.name}</h3>
-                  <p className="text-gray-500">${item.price} ({item.quantity} in stock)</p>
+                  <h3 className="text-2xl font-bold">{item.name}</h3>
+                  <p className="text-gray-500 font-bold text-xl">${item.price} ({item.quantity} in stock)</p>
                 </div>
                 <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md" onClick={() => handlePurchase(item.id)}>Purchase</button>
               </div>

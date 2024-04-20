@@ -22,7 +22,7 @@ function AppContent() {
   return (
     <div className="flex flex-col">
       <BrowserRouter>
-        <div className="flex">
+        <div className="flex bg-blue-gray-900">
           <Sidebar />
           <div className="ml-0 lg:ml-60 w-screen">
             <Navbar />

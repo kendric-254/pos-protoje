@@ -23,7 +23,7 @@ const Home = () => {
     return (
         <div>
             <BrowserRouter>
-                <div>
+                <div className="">
                     <Switch>
                         <Route path="/dashboard" >
                             <Dashboard/>
