@@ -11,7 +11,7 @@ const Sidebar = () => {
     };
 
     return (
-        <div className={`lg:w-60 bg-blue-900 min-h-screen fixed z-50 top-0 transition-all duration-300 ${isOpen ? 'w-full lg:w-56' : 'w-0'}`}>
+        <div className={`lg:w-60 bg-blue-950 min-h-screen fixed z-50 top-0 transition-all duration-300 ${isOpen ? 'w-full lg:w-56' : 'w-0'}`}>
             <div className="text-white p-5 space-y-10">
                 <h1 className=" text-xl lg:text-4xl font-semibold mb-20 ">Game Box</h1>
 

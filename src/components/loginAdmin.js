@@ -4,6 +4,7 @@ import { AuthContext } from './AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom'; // Import useHistory hook from react-router-dom
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const LoginForm = () => {
   const { login, refreshToken } = useContext(AuthContext);
@@ -42,8 +43,9 @@ const LoginForm = () => {
           sessionStorage.setItem('refreshToken', refreshToken);
 
           login(accessToken);
+          login("admin")
           // Use history.replace to navigate to a different page and replace the current entry in the history stack
-          history.replace('/sideBar');
+          history.replace('/dashboard');
 
           toast.success('Login Successful', {
             position: toast.POSITION.TOP_RIGHT,
@@ -79,31 +81,41 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleLogin} className="flex flex-col items-center justify-center mt-10  shadow-2xl shadow-blue-500 h-96 gap-2">
-      <h1 className='text-2xl text-center font-bold mb-4'>Sign In</h1>
-      <label>Enter Your Email</label>
-      <input
-        type="text"
-        placeholder="Email"
-        name='admin_email'
-        value={data.admin_email}
-        onChange={handleChange}
-        className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
-      />
-      <label>Enter Your Password</label>
-      <input
-        type="password"
-        placeholder="Password"
-        name='password'
-        value={data.password}
-        onChange={handleChange}
-        className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
-      />
-      <button type="submit" className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5">
-        Login
-      </button>
-      <ToastContainer />
-    </form>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <form onSubmit={handleLogin} className="flex flex-col bg-white p-52 rounded-lg shadow-md gap-5">
+        <h1 className="text-2xl text-center font-bold mb-4">Hello Admin</h1>
+
+        <h1 className="text-2xl text-center font-bold mb-4">Sign In to Game Box</h1>
+        <label className="block">Email</label>
+        <input
+          type="text"
+          placeholder="Enter your Email"
+          name="admin_email"
+          value={data.admin_email}
+          onChange={handleChange}
+          className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+        />
+        <label className="block">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Your Password"
+          name="password"
+          value={data.password}
+          onChange={handleChange}
+          className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+        />
+        <button
+          type="submit"
+          className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5"
+        >
+          Login
+        </button>
+        <Link to="/loginUser" className="text-blue-500 hover:underline">
+          Login as user
+        </Link>
+        <ToastContainer />
+      </form>
+    </div>
   );
 };
 

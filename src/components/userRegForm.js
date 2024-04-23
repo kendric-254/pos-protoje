@@ -1,11 +1,11 @@
-// RegistrationForm.js
+// UserForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
-const RegistrationForm = () => {
+const UserForm = () => {
   const [data, setRegData] = useState({
-    admin_email: '',
+    user_email: '',
     password: '',
   });
 
@@ -19,8 +19,8 @@ const RegistrationForm = () => {
   
   const handleRegistration = (e) => {
     e.preventDefault();
-    if (data.admin_email.length.admin_email !== undefined && data.admin_email) {
-      toast.error('Enter Corect Email', {
+    if (data.user_email.length.user_email !== undefined && data.user_email) {
+      toast.error('Enter Correct Email', {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000
       })
@@ -30,7 +30,7 @@ const RegistrationForm = () => {
         autoClose: 3000
       })
     } else (
-    axios.post('http://localhost:4000/api/admin/addAdmin', data, {
+    axios.post('http://localhost:4000/api/user/addUser', data, {
       // headers: {
       //   'Content-Type': 'application/json',
       // },
@@ -51,13 +51,13 @@ const RegistrationForm = () => {
   return (
     <div className='flex items-center justify-center h-screen'>
     <form onSubmit={handleRegistration} className=" flex flex-col items-center justify-center shadow-2xl shadow-blue-500 p-52 gap-2">
-      <h1 className='text-2xl text-center font-bold mb-4'>Registration</h1>
+      <h1 className='text-2xl text-center font-bold mb-4'> User Registration</h1>
       <label>Email :</label>
       <input
         type="text"
         placeholder="Enter Your Email"
-        value={data.admin_email}
-        name='admin_email'
+        value={data.user_email}
+        name='user_email'
         onChange={(handleChange)}
         className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
       />
@@ -79,4 +79,4 @@ const RegistrationForm = () => {
   );
   }
 
-export default RegistrationForm;
+export default UserForm;

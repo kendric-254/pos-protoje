@@ -15,7 +15,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar text-white bg-blue-900 flex flex-col lg:flex-row w-auto items-center ml-0  p-5">
+        <nav className="navbar text-white bg-blue-950 flex flex-col lg:flex-row w-auto items-center ml-0  p-5">
             {/* Left section */}
             <div className="mr-0 lg:mr-5">
                 <h1 className="text-2xl lg:text-3xl">Welcome </h1>
@@ -40,6 +40,9 @@ const Navbar = () => {
                     <button className="bg-lime-700 text-white rounded-xl p-2" onClick={handleLogout}>
                         Log Out
                     </button>
+                     {/* <button className="bg-blue-700 text-white rounded-xl ml-1">
+                        <Link to="/registerForm" className="block py-2 px-4 mt-0">Register</Link>
+                        </button> */}
                     {
                         <h1 className="text-5xl float-right ml-5 lg:ml-10
                         "><FontAwesomeIcon icon={faUserCircle} /></h1>
@@ -48,11 +51,7 @@ const Navbar = () => {
             ) : (
                 <div className="ml-0 lg:ml-12">
                     <button className="bg-lime-700 text-white rounded-xl">
-                        <Link to="/loginForm" className="block py-2 px-4 mt-0">Login</Link>
-                        </button>
-
-                    <button className="bg-blue-700 text-white rounded-xl ml-1">
-                        <Link to="/registerForm" className="block py-2 px-4 mt-0">Register</Link>
+                        <Link to="/loginAdmin" className="block py-2 px-4 mt-0">Login</Link>
                         </button>
                 </div>
             )}
@@ -91,7 +90,7 @@ export default Navbar;
 //             </div>
 
 //             <div className="ml-0 lg:ml-12">
-//                <button className="bg-lime-700 text-white rounded-xl" > <Link to="/loginForm"
+//                <button className="bg-lime-700 text-white rounded-xl" > <Link to="/loginAdmin"
 //                     className="block py-2 px-4 mt-0 ">Login</Link>
 //                     </button>
 //             </div>
