@@ -26,7 +26,7 @@ db.sequelize = sequelize;
 
 
 db.admins = require('./adminModel')(sequelize, DataTypes);
-
+db.users = require('./userModel')(sequelize, DataTypes);
 
 db.sequelize.sync({force: false})
     .then(() => {

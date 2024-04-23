@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 const adminRoute = require('./routes/adminRoute')
+const userRoute = require('./routes/userRoute')
 // const createHttpError = require('http-errors');
 const cors = require('cors');
 const { default: helmet } = require('helmet');
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/admin', adminRoute)
+app.use('/api/user', userRoute)
 
 
 app.use((err, req, res, next) => {
