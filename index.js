@@ -2,6 +2,8 @@ const express = require('express')
 const app = express();
 const adminRoute = require('./routes/adminRoute')
 const userRoute = require('./routes/userRoute')
+const saleRoute = require('./routes/saleRoute')
+const gameRoute = require('./routes/gameRoute')
 // const createHttpError = require('http-errors');
 const cors = require('cors');
 const { default: helmet } = require('helmet');
@@ -29,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/admin', adminRoute)
 app.use('/api/user', userRoute)
+app.use('/api/sale', saleRoute)
+app.use('/api/game', gameRoute)
 
 
 app.use((err, req, res, next) => {
