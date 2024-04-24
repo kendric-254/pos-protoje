@@ -27,7 +27,7 @@ const Sidebar = () => {
 
                 <ul className={`space-y-20 font-bold text-sm lg:text-2xl ${isOpen ? '' : 'hidden'} lg:block`}>
                     <li><Link to="/dashboard" className="block py-2 px-4"><FontAwesomeIcon icon={faHome} /> Dashboard </Link></li>
-                    <li><Link to="/sales" className="block py-2 px-4"><FontAwesomeIcon icon={faTable} /> Products</Link></li>
+                    <li><Link to="/sales" className="block py-2 px-4"><FontAwesomeIcon icon={faTable} /> Sales</Link></li>
                     <li><Link to="/customers" className="block py-2 px-4"><FontAwesomeIcon icon={faPeopleArrows} /> Customers</Link></li>
                     <li><Link to="/reportForm" className="block py-2 px-4"><FontAwesomeIcon icon={faClipboard} /> Reports</Link></li>
                     
