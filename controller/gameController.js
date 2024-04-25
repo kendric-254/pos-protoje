@@ -1,10 +1,10 @@
 const {where} = require("sequelize")
 const db = require('../model/dbConnect')
-const stocks = db.stocks
+const games = db.games
 
 
 module.exports = {
-    getGame: async (req, res, next) => {
+    addGame: async (req, res, next) => {
         try {
             let info = {
                 game_name: req.body.game_name,
@@ -12,9 +12,9 @@ module.exports = {
                 price: req.body.price
             }
 
-            const getGame = await
-                stocks.create(info)
-            res.status(200).send(getGame)
+            const addGame = await
+                games.create(info)
+            res.status(200).send(addGame)
         } catch (error) {
             next(error)
         }

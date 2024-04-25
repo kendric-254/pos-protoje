@@ -28,7 +28,7 @@ db.sequelize = sequelize;
 db.admins = require('./adminModel')(sequelize, DataTypes);
 db.users = require('./userModel')(sequelize, DataTypes);
 db.sales = require('./salesModel')(sequelize, DataTypes);
-db.stocks =  require('./gamesModel')(sequelize,DataTypes)
+db.games =  require('./gamesModel')(sequelize,DataTypes)
 
 db.sequelize.sync({force: false})
     .then(() => {
