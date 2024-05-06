@@ -10,6 +10,7 @@ import RegistrationForm from "./components/registerForm";
 import ReportsData from "./components/reportForm";
 import UserForm from "./components/userRegForm";
 import LoginUserForm from "./components/loginUser";
+import CustomerSale from "./components/customers";
 
 function App() {
   return (
@@ -67,6 +68,9 @@ function AdminDashboard() {
           </Route>
           <Route path="/reportForm">
             <ReportsData />
+          </Route>
+           <Route path="/customers">
+            <CustomerSale/>
           </Route>
           <Redirect to="/dashboard" />
         </Switch>

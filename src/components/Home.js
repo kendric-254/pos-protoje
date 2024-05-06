@@ -17,6 +17,7 @@ import Dashboard from "./dashboard";
 import SalesPage from "./sales";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom";
 import ReportsData from "./reportForm";
+import CustomerSale from "./customers";
 
 
 const Home = () => {
@@ -30,6 +31,9 @@ const Home = () => {
                         </Route>
                         <Route path="/sales">
                             <SalesPage/>
+                        </Route>
+                        <Route path="/customers">
+                            <CustomerSale/>
                         </Route>
                         <Route path="/reportForm">
                             <ReportsData/>
