@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const dbConfig = require("../config/dbConfig");
-
-
+const {Game} = require("../model/gamesModel")
 const sequelize = new Sequelize(
     dbConfig.DB,
     dbConfig.USER,
@@ -35,5 +34,7 @@ db.sequelize.sync({force: false})
     console.log('re-sync done')
     })
 
-    
+// db.sales.belongsTo(db.games,{foreignKey: 'game_id'})
+db.sales.belongsTo(db.games, { foreignKey: 'game_id' });
+
 module.exports = db

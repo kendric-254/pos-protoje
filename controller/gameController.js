@@ -19,4 +19,12 @@ module.exports = {
             next(error)
         }
     },
+    getAllGames: async (req, res, next) => {
+        try {
+            let getAllGames = await games.findAll()
+            res.status(200).send(getAllGames)
+        } catch (error) {
+            next(error)
+        }
+    }
 }

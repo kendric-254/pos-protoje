@@ -1,7 +1,7 @@
 const {where} = require("sequelize")
 const db = require('../model/dbConnect')
 const sales = db.sales
-const { Game } = require('../model/gamesModel')
+const {Game}  = require('../model/gamesModel')
 const games = db.games
 module.exports = {
     makeSale: async (req, res, next) => {
@@ -20,14 +20,34 @@ module.exports = {
             next(error)
         }
     },
-     getAllSales: async (req, res, next) => {
-        try {
-            let getAllSales = await sales.findAll({
-                include: [{model: Game, attributes:['game_name']}]
-            })
-            res.status(200).send(getAllSales)
-        } catch (error) {
-            next(error)
-        }
-    },
+    //  getAllSales: async (req, res, next) => {
+    //     try {
+    //         let getAllSales = await sales.findAll({
+    //             include: [{model: Game, attributes:['game_name']}]
+    //         })
+    //         res.status(200).send(getAllSales)
+    //     } catch (error) {
+    //         next(error)
+    //     }
+    // },
+
+    getAllSales: async (req, res, next) => {
+    try {
+        let getAllSales = await sales.findAll({
+            include: [{ model: games, attributes: ['game_name'] }],
+            raw: true, 
+            nest: true
+        });
+        getAllSales = getAllSales.map(sale => ({
+            ...sale,
+            game: { game_id: sale['Game.game_id'], game_name: sale['Game.game_name'] }
+        }));
+        getAllSales = getAllSales.map(({ Game, ...sale }) => sale);
+
+        res.status(200).send(getAllSales);
+    } catch (error) {
+        next(error);
+    }
+},
+
 }
