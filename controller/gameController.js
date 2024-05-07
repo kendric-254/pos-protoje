@@ -1,5 +1,6 @@
 const {where} = require("sequelize")
 const db = require('../model/dbConnect')
+const createHttpError = require("http-errors")
 const games = db.games
 
 
@@ -16,6 +17,23 @@ module.exports = {
                 games.create(info)
             res.status(200).send(addGame)
         } catch (error) {
+            next(error)
+        }
+    },
+
+    getGame: async (req, res, next) => { 
+        try {
+            let id = req.params.id
+            let Game = await games.findOne({
+                where: {
+                    game_id: id
+                }
+            })
+            if (!games) {
+                throw (createHttpError(404, "Game not found"))
+            }
+            res.status(200).send(Game)
+        } catch (error) { 
             next(error)
         }
     },

@@ -11,7 +11,7 @@ const { default: rateLimit } = require('express-rate-limit');
 
 
 const limiter = rateLimit({
-    max: 100,
+    max: 300,
     windowMs: 60 * 60 * 1000,
     message: 'Too many requests from this IP, please try again in 15 minutes'
 })
@@ -21,10 +21,20 @@ app.use('/api', limiter)
 require('./model/dbConnect')
 require('dotenv').config()
 
-const corOptions = {
-    origin : 'http://localhost:3000'
-}
-app.use(cors(corOptions))
+// const corOptions = {
+//     origin: 'http://localhost:3000',
+//     origin: 'https://localhost:4000'
+// }
+// app.use(cors(corOptions))
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+}))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
