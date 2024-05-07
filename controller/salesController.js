@@ -18,7 +18,6 @@ module.exports = {
         }
 
         if (info.quantity_sold > game.quantity_in_stock) {
-            // Quantity sold exceeds quantity in stock
             return res.status(400).send({ message: "Quantity sold exceeds quantity in stock" });
         }
 

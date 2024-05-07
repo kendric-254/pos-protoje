@@ -2,7 +2,8 @@ const {where} = require("sequelize")
 const db = require('../model/dbConnect')
 const createHttpError = require("http-errors")
 const games = db.games
-
+    const path = require('path');
+const fs = require('fs');
 
 module.exports = {
     addGame: async (req, res, next) => {
@@ -10,7 +11,8 @@ module.exports = {
             let info = {
                 game_name: req.body.game_name,
                 quantity_in_stock: req.body.quantity_in_stock,
-                price: req.body.price
+                price: req.body.price,
+                image:req.body.image
             }
 
             const addGame = await
