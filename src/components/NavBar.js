@@ -15,7 +15,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar text-white bg-blue-950 flex flex-col lg:flex-row w-auto items-center ml-0  p-5">
+        <nav className="navbar text-white bg-blue-950 flex flex-col lg:flex-row w-full items-center ml-0  p-5 top-0 z-20 fixed">
             {/* Left section */}
             <div className="mr-0 lg:mr-5">
                 <h1 className="text-2xl lg:text-3xl">Welcome </h1>

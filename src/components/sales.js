@@ -9,7 +9,7 @@ const DisplaySales = () => {
             .then(res => {
                 const salesData = res.data;
                 Promise.all(salesData.map(sale =>
-                    axios.get(`http://localhost:4000/api/game/getGame/${sale.game_id}`) // Modify the endpoint URL
+                    axios.get(`http://localhost:4000/api/game/getGame/${sale.game_id}`)
                         .then(res => ({ ...sale, game_name: res.data.game_name }))
                 ))
                     .then(updatedSales => {
@@ -29,8 +29,8 @@ const DisplaySales = () => {
     }, []);
 
     return (
-        <div className="flex justify-center items-center">
-            <table className="w-full sm:w-auto bg-white border border-gray-200">
+        <div className="flex justify-center items-center mt-56 lg:mt-24">
+            <table className=" sm:w-auto bg-white border border-gray-200">
                 <thead>
                     <tr className="bg-gray-50">
                         <th className="px-6 py-3 text-lg font-semibold text-gray-500 uppercase tracking-wider">Game Name</th>
@@ -40,7 +40,7 @@ const DisplaySales = () => {
                 </thead>
                 <tbody className="divide-y divide-blue-200">
                     {records.map((r, i) => (
-                        <tr key={i} className={i % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
+                        <tr key={i} className={i % 2 === 0 ? 'bg-blue-400' : 'bg-blue-950'}>
                             <td className="px-6 py-4 text-lg text-gray-700">{r.game_name}</td>
                             <td className="px-6 py-4 text-lg text-gray-700">{r.quantity_sold}</td>
                             <td className="px-6 py-4 text-lg text-gray-700">{r.total_price}</td>

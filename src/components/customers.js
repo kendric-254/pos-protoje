@@ -3,8 +3,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
-// import saleSchema from "./saleValidationSchema";
+import 'react-toastify/dist/ReactToastify.css';
 const MakeSaleForm = () => {
     const [data, setFormData] = useState({
         quantity_sold: '',
@@ -71,7 +70,7 @@ const MakeSaleForm = () => {
                 toast.error('Sale Failed as something went wrong', {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 3000
-                });
+                }); 
             }
         }
     };
@@ -107,7 +106,7 @@ const MakeSaleForm = () => {
     // };
 
     return (
-        <div className="w-full max-w-md mx-auto">
+        <div className="w-full max-w-md mx-auto mt-56 lg:mt-24">
             <form onSubmit={makeSale} className="bg-white shadow-2xl shadow-blue-500 rounded px-8 pt-6 pb-8 mb-4">
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="quantitysold">
@@ -130,8 +129,8 @@ const MakeSaleForm = () => {
                     <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="game_id" id="game" value={data.game_id} onChange={handleChange}>
                 <option key="" value="">Select Game</option>
                 {records.map((game) => (
-                    <option key={game.id} value={game.game_id}>
-                          {game.game_id}
+                    <option key={game.id} value={game.game_id} >
+                          {game.game_id} - {game.game_name}
                        </option>
                     ))}
                    </select>

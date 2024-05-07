@@ -24,7 +24,7 @@ const Home = () => {
     return (
         <div>
             <BrowserRouter>
-                <div className="">
+                <div className="bg-dark-400">
                     <Switch>
                         <Route path="/dashboard" >
                             <Dashboard/>
