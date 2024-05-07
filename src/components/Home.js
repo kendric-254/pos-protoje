@@ -17,7 +17,7 @@ import Dashboard from "./dashboard";
 import SalesPage from "./sales";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom";
 import ReportsData from "./reportForm";
-import CustomerSale from "./customers";
+import MakeSaleForm from "./customers";
 
 
 const Home = () => {
@@ -33,7 +33,7 @@ const Home = () => {
                             <SalesPage/>
                         </Route>
                         <Route path="/customers">
-                            <CustomerSale/>
+                            <MakeSaleForm/>
                         </Route>
                         <Route path="/reportForm">
                             <ReportsData/>

@@ -10,7 +10,7 @@ import RegistrationForm from "./components/registerForm";
 import ReportsData from "./components/reportForm";
 import UserForm from "./components/userRegForm";
 import LoginUserForm from "./components/loginUser";
-import CustomerSale from "./components/customers";
+import MakeSaleForm from "./components/customers";
 
 function App() {
   return (
@@ -70,7 +70,7 @@ function AdminDashboard() {
             <ReportsData />
           </Route>
            <Route path="/customers">
-            <CustomerSale/>
+            <MakeSaleForm/>
           </Route>
           <Redirect to="/dashboard" />
         </Switch>
