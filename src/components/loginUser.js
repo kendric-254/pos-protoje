@@ -47,7 +47,7 @@ const LoginUserForm = () => {
           // Use history.replace to navigate to a different page and replace the current entry in the history stack
           history.replace('/dashboard');
 
-          toast.success('Login Successful', {
+          toast.success(`Login Successful ${data.user_email}`, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 3000,
           })

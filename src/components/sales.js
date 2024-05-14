@@ -29,26 +29,21 @@ const DisplaySales = () => {
     }, []);
 
     return (
-        <div className="flex justify-center items-center mt-56 lg:mt-24">
-            <table className=" sm:w-auto bg-white border border-gray-200">
-                <thead>
-                    <tr className="bg-gray-50">
-                        <th className="px-6 py-3 text-lg font-semibold text-gray-500 uppercase tracking-wider">Game Name</th>
-                        <th className="px-6 py-3 text-lg font-semibold text-gray-500 uppercase tracking-wider">Quantity Sold</th>
-                        <th className="px-6 py-3 text-lg font-semibold text-gray-500 uppercase tracking-wider">Total Price</th>
-                    </tr>
-                </thead>
-                <tbody className="divide-y divide-blue-200">
-                    {records.map((r, i) => (
-                        <tr key={i} className={i % 2 === 0 ? 'bg-blue-400' : 'bg-blue-950'}>
-                            <td className="px-6 py-4 text-lg text-gray-700">{r.game_name}</td>
-                            <td className="px-6 py-4 text-lg text-gray-700">{r.quantity_sold}</td>
-                            <td className="px-6 py-4 text-lg text-gray-700">{r.total_price}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+      <div className="flex justify-center items-center mt-10 lg:mt-36">
+  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    {records.map((game, i) => (
+      <div key={i} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">{game.game_name}</div>
+          <p className="text-gray-700 text-base mb-2">Quantity Sold: {game.quantity_sold}</p>
+          <p className="text-gray-700 text-base mb-2">Total Price: {game.total_price}</p>
         </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+
     );
 };
 

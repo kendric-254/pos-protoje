@@ -47,7 +47,7 @@ const LoginForm = () => {
           // Use history.replace to navigate to a different page and replace the current entry in the history stack
           history.replace('/dashboard');
 
-          toast.success('Login Successful', {
+          toast.success(`Login Successful welcome ${data.admin_email}`, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 3000,
           })
@@ -120,8 +120,6 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-// import React, {  useContext, useState } from 'react';
 // import axios from 'axios';
 // import { AuthContext } from './AuthContext';
 // import { ToastContainer, toast } from 'react-toastify';

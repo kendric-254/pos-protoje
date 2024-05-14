@@ -11,11 +11,13 @@ import ReportsData from "./components/reportForm";
 import UserForm from "./components/userRegForm";
 import LoginUserForm from "./components/loginUser";
 import MakeSaleForm from "./components/customers";
-
+import { ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <AuthProvider>
       <AppContent />
+      <ToastContainer/>
     </AuthProvider>
   );
 }
@@ -91,6 +93,9 @@ function UserDashboard() {
           </Route>
           <Route path="/sales">
             <SalesPage />
+          </Route>
+          <Route path="/customers">
+            <MakeSaleForm/>
           </Route>
           {/* <Redirect to="/sales" /> */}
         </Switch>
