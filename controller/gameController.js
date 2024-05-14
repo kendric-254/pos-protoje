@@ -46,5 +46,36 @@ module.exports = {
         } catch (error) {
             next(error)
         }
-    }
+    }, 
+
+      updateGame: async (req, res, next) => {
+        try {
+            let id = req.params.id
+
+            const updateGame = await games.update(req.body, { where: { game_id: id } })
+            if (!games) {
+                throw (createHttpError(404, "Game not found"))
+            }
+            res.status(200).send(updateGame)
+        } catch (error) {
+            next(error)
+    
+        }
+    },
+      
+    deleteGame: async (req, res, next) => {
+        try {
+            let id = req.params.id
+
+            const deleteGame = await games.destroy({ where: { game_id: id } })
+            if (!games) {
+                throw (createHttpError(404, "Game not found"))
+            }
+            res.status(200).send(deleteGame)
+        } catch (error) { 
+            next(error)
+        }
+      }
+    
+
 }
