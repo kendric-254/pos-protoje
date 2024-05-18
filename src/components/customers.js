@@ -11,7 +11,7 @@ const MakeSaleForm = () => {
     });
 
     const [records, setGames] = useState([]);
-    const [receipt, setReceipt] = useState(null);
+    // const [receipt, setReceipt] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -49,10 +49,10 @@ const MakeSaleForm = () => {
                     autoClose: 3000
                 });
                 // Generate receipt
-                setReceipt({
-                    ...response.data,
-                    company_name: "GAME BOX",
-                });
+                // setReceipt({
+                //     ...response.data,
+                //     company_name: "GAME BOX",
+                // });
                 setFormData({
                     image: '',
                     quantity_sold: '',
@@ -82,69 +82,85 @@ const MakeSaleForm = () => {
     };
 
     return (
-        <div className="w-full max-w-md mx-auto mt-64 lg:mt-32 ">
-<form onSubmit={makeSale} className="bg-white shadow-2xl shadow-gray-500 rounded-lg p-8 lg:p-12 mb-4 max-w-2xl mx-auto">
-  <div className="mb-6">
-    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="game">
-    Welcome To Game Box
-     </label>
-    <select
-      className="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      name="game_id"
-      id="game"
-      value={data.game_id}
-      onChange={handleChange}
-    >
-      <option key="" value="">
-        Select Game
-      </option>
-      {records.map((game) => (
-        <option key={game.id} value={game.game_id}>
-          {game.game_id} - {game.game_name}
-        </option>
-      ))}
-    </select>
-  </div>
+      <div className="w-full bg-gray-900 max-w-8xl max-h-full mx-auto mt-32 lg:mt-20 font-serif">
+        <div className="bg-gray-800 shadow-lg shadow-gray-900 rounded-lg p-10 lg:p-12  max-w-xl mt-28 lg:mt-1  mx-auto">
+        <form onSubmit={makeSale} className="">
+                <div className="">
+                    <label className="block text-blue-400 text-lg font-bold mb-6" htmlFor="game">
+                        Welcome To Game Box
+                    </label>
+                    <select
+                        className="bg-gray-800 shadow shadow-gray-700 appearance-none border border-gray-800 rounded-lg w-full py-3 px-4 text-blue-400 leading-tight focus:outline-none focus:shadow-outline mb-4"
+                        name="game_id"
+                        id="game"
+                        value={data.game_id}
+                        onChange={handleChange}
+                    >
+                        <option key="" value="">
+                            Select Game
+                        </option>
+                        {records.map((game) => (
+                            <option key={game.id} value={game.game_id}>
+                                 {game.game_name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-  <div className="mb-6">
-    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="quantitysold">
-      Quantity Sold
-    </label>
-    <input
-      className="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      type="number"
-      name="quantity_sold"
-      id="quantitysold"
-      value={data.quantity_sold}
-      onChange={handleChange}
-    />
-  </div>
+                <div className="mb-4">
+                    <label className="block text-blue-400 text-lg font-bold mb-2" htmlFor="quantitysold">
+                        Quantity Sold
+                    </label>
+                    <input
+                        className="shadow shadow-gray-700 appearance-none border border-gray-800 bg-gray-800 rounded-lg w-full py-3 px-4 text-gray-100 leading-tight focus:outline-none focus:shadow-outline"
+                        type="number"
+                        name="quantity_sold"
+                        id="quantitysold"
+                        value={data.quantity_sold}
+                        onChange={handleChange}
+                    />
+                </div>
 
-  <div className="mb-6">
-    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="total_price">
-      Total Price
-    </label>
-    <input
-      className="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      type="number"
-      name="total_price"
-      id="totalprice"
-      value={data.total_price}
-      onChange={handleChange}
-    />
-  </div>
+                <div className="mb-4">
+                    <label className="block text-blue-400 text-lg font-bold mb-2" htmlFor="total_price">
+                        Total Price
+                    </label>
+                    <input
+                        className="shadow shadow-gray-700 appearance-none border border-gray-800 bg-gray-800 rounded-lg w-full py-3 px-4 text-gray-100 leading-tight focus:outline-none focus:shadow-outline"
+                        type="number"
+                        name="total_price"
+                        id="totalprice"
+                        value={data.total_price}
+                        onChange={handleChange}
+                    />
+                </div>
 
-  <div className="flex justify-end">
-    <button
-      type="submit"
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline"
-    >
-      Make Sale
-    </button>
-  </div>
-</form>
+                <div className="flex justify-end">
+                    <button
+                        type="submit"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline"
+                    >
+                        Make Sale
+                    </button>
+                </div>
+          </form>
+          </div>
+        
+            {/* Display price of games */}
+        <div className="bg-gray-800 container text-blue-400 max-w-5xl  lg:ml-96 mt-1 shadow-lg shadow-gray-800 rounded-lg p-3">
+            <h2 className="text-3xl text-center font-bold mb-2">Game Prices</h2>
+            <ul className="divide-y divide-gray-800">
+                {records.map((game) => (
+            <li key={game.game_id} className="py-2 flex justify-between ">
+                <span className="text-lg font-bold">{game.game_name}</span>
+                <span className="text-lg font-bold">KES {game.price}</span>
+            </li>
+                ))}
+            </ul>
+        </div>
+        <br></br>
 
-            {receipt && (
+            {/* {receipt && (
                 <div className="bg-white shadow-2xl rounded-lg p-8 mb-4">
                     <h2 className="text-2xl font-bold mb-4 text-center">Thank You for Your Purchase!</h2>
                     <div className="flex justify-between mb-4">
@@ -162,10 +178,10 @@ const MakeSaleForm = () => {
                     <hr className="border-gray-400 my-4" />
                     <p className="text-sm text-center">Thank you for choosing our store! We hope you enjoy your purchase.</p>
                 </div>
-            )}
+            )} */}
             <ToastContainer/>
         </div>
-    )
+    );
 }
 
 export default MakeSaleForm;
