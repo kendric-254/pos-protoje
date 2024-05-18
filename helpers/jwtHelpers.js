@@ -7,8 +7,8 @@ module.exports = {
             const payload = {AdminId}
             const secret = process.env.ACCESS_TOKEN_SECRET
             const options = {
-                expiresIn: '10m',
-                issuer: 'http://localhost:3000/dashboard',
+                expiresIn: '600',
+                issuer: 'http://localhost:3000/',
                 audience : AdminId.toString(),
             }
             JWT.sign(payload, secret, options, (error, token) => {
@@ -50,7 +50,7 @@ module.exports = {
             const secret = process.env.REFRESH_TOKEN_SECRET;
             const options = {
                 expiresIn: '1y',
-                issuer: "http://localhost:3000/dashboard",
+                issuer: "http://localhost:3000/",
                 audience: AdminId.toString(),
             }
             JWT.sign(payload, secret, options, (error, token) => {
