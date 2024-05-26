@@ -9,7 +9,8 @@ module.exports = {
         let info = {
             quantity_sold: req.body.quantity_sold,
             total_price: req.body.total_price,
-            game_id: req.body.game_id
+            game_id: req.body.game_id,
+            sale_date: req.body.sale_date,
         };
 
         const game = await games.findOne({ where: { game_id: info.game_id } });
@@ -46,19 +47,22 @@ module.exports = {
     //         next(error)
     //     }
     // },
-     getAllSales: async (req, res, next) => {
-        try {
-            let getAllSales = await sales.findAll({
-                include: [{
-                    model: games,
-                    attributes: ['game_name']
-                }]
-            })
-            res.status(200).send(getAllSales)
-        } catch (error) {
-            next(error)
-        }
-    },
+getAllSales: async (req, res, next) => {
+    try {
+        let getAllSales = await sales.findAll({
+            include: [{
+                model: games,
+                attributes: ['game_name']
+            }],
+            order: [
+                ['sale_date', 'DESC'] // Sort by sale_date in descending order
+            ]
+        });
+        res.status(200).send(getAllSales);
+    } catch (error) {
+        next(error);
+    }
+},
 
 //     getAllSales: async (req, res, next) => {
 //     try {

@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.addColumn('sales', 'game_id', {
+    await queryInterface.addColumn('sales_tbs', 'game_id', {
       type: Sequelize.INTEGER,
       references: {
         model: 'games',
@@ -16,6 +16,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn('sales', 'game_id');
+    await queryInterface.removeColumn('sales_tbs', 'game_id');
   },
 };
