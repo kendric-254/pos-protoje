@@ -13,6 +13,7 @@ import LoginUserForm from "./components/loginUser";
 import MakeSaleForm from "./components/customers";
 import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
+import DataPage from "./components/Data";
 function App() {
   return (
     <AuthProvider>
@@ -73,6 +74,9 @@ function AdminDashboard() {
           </Route>
            <Route path="/customers">
             <MakeSaleForm/>
+          </Route>
+          <Route path="/Data">
+            <DataPage/>
           </Route>
           <Redirect to="/dashboard" />
         </Switch>

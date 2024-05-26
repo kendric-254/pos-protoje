@@ -55,15 +55,15 @@ function GameShop() {
   };
 
   return (
-    <div className="dashboard bg-gray-900 p-5 mt-80 lg:mt-28">
+    <div className="dashboa p-5 mt-80 lg:mt-20">
       <div className="container font-serif">
-        <h1 className="text-3xl font-bold mb-6 text-center text-white">Sales Reports</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Sales Reports</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {records.map((game, index) => (
-            <div key={index} className="rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition duration-1000 ease-out bg-gray-800 shadow-gray-600 p-6 ">
-              <h2 className="text-4xl font-semibold mb-3 text-blue-300">{game.game_name}</h2>
-              <p className="text-2xl mb-2 text-blue-300">Stock: {game.quantity_in_stock}</p>
-              <p className="text-2xl text-blue-300">Price: KES {game.price}</p>
+            <div key={index} className="rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition duration-1000 ease-out bg-gray-100 shadow-gray-600 p-6 ">
+              <h2 className="text-4xl font-semibold mb-3">{game.game_name}</h2>
+              <p className="text-2xl mb-2">Stock: {game.quantity_in_stock}</p>
+              <p className="text-2xl">Price: KES {game.price}</p>
               <img src={game.image} alt={game.game_name} className="w-full rounded-xl h-auto mb-3" style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
               <div className="flex space-x-4">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setSelectedGame(game); setShowUpdateModal(true); }}><FontAwesomeIcon icon={faEdit} /></button>

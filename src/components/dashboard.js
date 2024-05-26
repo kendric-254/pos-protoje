@@ -41,12 +41,12 @@ function GameShop() {
   };
 
   return (
-    <div className="dashboard bg-gray-900 rounded-sm p-5 mt-56 lg:mt-20 ">
+    <div className="dashboard rounded-sm p-5 mt-56 lg:mt-20 ">
       <div className="container font-serif"> 
-        <h1 className="text-3xl font-bold mb-6 mt-24 lg:mt-4 text-white text-center">DashBoard</h1>
+        <h1 className="text-3xl font-bold mb-6 mt-24 lg:mt-4 text-center">DashBoard</h1>
         {userRole === 'admin' && (
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-3 rounded"
             onClick={() => setShowAddGameModal(true)} 
           >
             Add Game
@@ -54,9 +54,9 @@ function GameShop() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
           {records.map((game, index) => (
-            <div key={index} className="rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition duration-1000 ease-out bg-gray-800 shadow-gray-700 p-6 ">
-              <h2 className="text-4xl font-semibold mb-3 text-blue-300 text-opacity-100">{game.game_name}</h2>
-              <p className="text-2xl font-extrabold text-blue-300 mb-3">Price: KES {game.price}</p>
+            <div key={index} className="rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition duration-1000 ease-out bg-gray-100 shadow-gray-700 p-6 ">
+              <h2 className="text-4xl font-semibold mb-3 text-opacity-100">{game.game_name}</h2>
+              <p className="text-2xl font-extrabold mb-3">Price: KES {game.price}</p>
               <img
                 src={game.image}
                 alt={game.game_name}
