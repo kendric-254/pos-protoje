@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "nodemon index.js",
-    "build": "[my-framework] build --output public"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
