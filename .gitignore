@@ -1,3 +1,3 @@
-node_modules/
+# node_modules/
 migrations/add_games_table.js
 .env
