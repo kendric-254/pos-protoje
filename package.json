@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "dev": "nodemon index.js",
-    "build": "npm i"
+    "build": "[my-framework] build --output public"
   },
   "keywords": [],
   "author": "",
