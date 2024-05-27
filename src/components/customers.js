@@ -8,7 +8,7 @@ const MakeSaleForm = () => {
         quantity_sold: '',
         total_price: '',
         game_id: '',
-        sale_date: new Date() // Set initial sale date to current date in YYYY-MM-DD format
+        sale_date: new Date() 
     });
 
     const [records, setGames] = useState([]);
@@ -43,7 +43,7 @@ const makeSale = async (e) => {
     e.preventDefault();
 
     try {
-        const newData = { ...data, sale_date: new Date() }; // Include current date directly here
+        const newData = { ...data, sale_date: new Date() }; 
 
         const response = await axios.post('http://localhost:4000/api/sale/makeSale', newData);
         if (response.status === 200) {
@@ -55,13 +55,13 @@ const makeSale = async (e) => {
                 setReceipt({
                     ...response.data,
                     company_name: "GAME BOX",
-                    sale_date: new Date() // Set initial sale date to current date in YYYY-MM-DD format
+                    sale_date: new Date() 
                 });
             setFormData({
                 quantity_sold: '',
                 total_price: '',
                 game_id: '',
-                sale_date: new Date() // Reset sale date to current date after successful sale
+                sale_date: new Date() 
             });
         } else {
             toast.error('Sale Failed', {
@@ -164,7 +164,7 @@ const makeSale = async (e) => {
                 </form>
             </div>
 
-            {/* Display price of games */}
+            {/* Display Receipt for games */}
 
             {receipt && (
                 <div className="bg-white shadow-2xl rounded-lg p-8 mb-4">

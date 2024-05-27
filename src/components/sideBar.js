@@ -31,9 +31,6 @@ const Sidebar = () => {
                     <li><Link to="/customers" className="block py-2 px-4"><FontAwesomeIcon icon={faPeopleArrows} /> Sell</Link></li>
                     <li><Link to="/reportForm" className="block py-2 px-4"><FontAwesomeIcon icon={faClipboard} /> Reports</Link></li>
                     <li><Link to="/Data" className="block py-2 px-4"><FontAwesomeIcon icon={faClipboard} /> Data</Link></li>
-                    
-                    
-                    {/* Right section */}
                    
                 </ul>
                 

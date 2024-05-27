@@ -35,7 +35,11 @@ const UserForm = () => {
       //   'Content-Type': 'application/json',
       // },
     })
-     .then((response) => {
+        .then((response) => {
+          toast.success('User added successfully', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoclose: 3000,
+       })
         console.log('Registration successful:', response.data);
         // Optionally, redirect the user or show a success message
       })

@@ -4,8 +4,8 @@ import { useAuth } from './AuthContext'; // Import useAuth hook
 
 function GameShop() {
   const [records, setGamesData] = useState([]);
-  const { userRole } = useAuth(); // Access userRole from AuthContext
-  const [showAddGameModal, setShowAddGameModal] = useState(false); // State to control modal visibility
+  const { userRole } = useAuth();
+  const [showAddGameModal, setShowAddGameModal] = useState(false);
   const [newGameData, setNewGameData] = useState({
     game_name: '',
     price: '',

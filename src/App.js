@@ -14,6 +14,8 @@ import MakeSaleForm from "./components/customers";
 import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
 import DataPage from "./components/Data";
+import ForgotPasswordForm from "./components/ForgotPassword";
+import ResetPasswordForm from "./components/ResetPassword";
 function App() {
   return (
     <AuthProvider>
@@ -39,6 +41,12 @@ function AppContent() {
         </Route>
         <Route path="/userRegForm">
           <UserForm/>
+        </Route>
+        <Route path="/ForgotPassword">
+          <ForgotPasswordForm/>
+        </Route>
+        <Route path="/ResetPassword">
+          <ResetPasswordForm/>
         </Route>
         <Route path="/">
           {isLoggedIn ? (
