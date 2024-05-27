@@ -56,5 +56,62 @@ module.exports = {
                 return next(createHttpError.BadRequest('Invalid Credentials'));
             next(error)
         }
+    },resetPassword: async (req, res, next) => {
+    try {
+        const { newPassword, confirmPassword } = req.body;
+        const { token } = req.params;
+
+        // Check if newPassword and confirmPassword match
+        if (newPassword !== confirmPassword) {
+            throw createHttpError.BadRequest('Passwords do not match');
+        }
+
+        // Decode the token to get the user ID
+        const decoded = jwt.verify(token, JWT_SECRET);
+
+        // Find the user in the database based on the decoded user ID
+        const user = await users.findOne({
+            where: {
+                user_id: decoded.userId
+            }
+        });
+        if (!user) throw createHttpError.NotFound('User not found');
+
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        
+        // Update the user's password in the database
+        user.password = hashedPassword;
+        await user.save();
+
+        res.send('Password reset successfully');
+    } catch (error) {
+        next(error);
     }
+},
+
+forgotPassword: async (req, res, next) => {
+    try {
+        const { email } = req.body;
+
+        // Find the user in the database based on the provided email
+        const user = await users.findOne({
+            where: {
+                user_email: email
+            }
+        });
+        if (!user) throw createHttpError.NotFound('User not found');
+
+        // Generate a JWT token with the user ID
+        const token = jwt.sign({ userId: user.user_id }, JWT_SECRET, { expiresIn: '1h' });
+
+        // Send an email to the user with the password reset link
+        // Here you would use nodemailer or another email service to send the email
+        
+        res.send('Password reset link sent to your email');
+    } catch (error) {
+        next(error);
+    }
+}
+
 }
