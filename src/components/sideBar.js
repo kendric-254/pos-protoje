@@ -20,7 +20,7 @@ const Sidebar = () => {
                         {isOpen ? (
                             <FontAwesomeIcon icon={faPowerOff} size="lg" />
                         ) : (
-                            <FontAwesomeIcon icon={faBars} size="lg" />
+                            <FontAwesomeIcon icon={faBars} size="lg mb-4" />
                         )}
                     </button>
                 </div>

@@ -43,7 +43,7 @@ const DataPage = () => {
     }, [location.search]);
 
     return (
-        <div className="container mx-auto mt-10 px-4">
+        <div className="container mx-auto mt-48 lg:mt-28 px-4">
             <h2 className="text-3xl font-semibold mb-6">Sales on {new URLSearchParams(location.search).get('sale_date')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {sales.map(sale => (

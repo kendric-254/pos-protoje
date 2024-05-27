@@ -40,7 +40,7 @@ useEffect(() => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="justify-center items-center mt-80 lg:mt-20 max-h-7xl ">
+        <div className="justify-center items-center mt-48 lg:mt-28 max-h-7xl ">
                <h1 className="text-5xl font-bold text-center mt-24">Sales Page</h1>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 font-serif justify-between">
             {currentRecords.map((game, i) => (

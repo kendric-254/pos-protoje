@@ -86,7 +86,7 @@ const makeSale = async (e) => {
 };
 
     return (
-        <div className="w-full max-w-8xl max-h-full mx-auto mt-32 lg:mt-20 font-serif">
+        <div className="w-full max-w-8xl max-h-full mx-auto mt-48 lg:mt-28 font-serif">
             <div className="shadow-lg shadow-gray-900 rounded-lg p-10 lg:p-12  max-w-xl mt-28 lg:mt-1  mx-auto">
                 <form onSubmit={makeSale} className="">
                     <div className="">

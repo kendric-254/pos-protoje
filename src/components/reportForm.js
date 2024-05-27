@@ -55,7 +55,7 @@ function GameShop() {
   };
 
   return (
-    <div className="dashboa p-5 mt-80 lg:mt-20">
+    <div className="dashboa p-5 mt-48 lg:mt-28">
       <div className="container font-serif">
         <h1 className="text-3xl font-bold mb-6 text-center">Sales Reports</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

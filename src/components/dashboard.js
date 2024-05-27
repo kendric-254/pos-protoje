@@ -41,7 +41,7 @@ function GameShop() {
   };
 
   return (
-    <div className="dashboard rounded-sm p-5 mt-56 lg:mt-20 ">
+    <div className="dashboard rounded-sm p-5 mt-20 lg:mt-20 ">
       <div className="container font-serif"> 
         <h1 className="text-3xl font-bold mb-6 mt-24 lg:mt-4 text-center">DashBoard</h1>
         {userRole === 'admin' && (
