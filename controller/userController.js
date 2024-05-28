@@ -105,8 +105,7 @@ forgotPassword: async (req, res, next) => {
         // Generate a JWT token with the user ID
         const token = jwt.sign({ userId: user.user_id }, JWT_SECRET, { expiresIn: '1h' });
 
-        // Send an email to the user with the password reset link
-        // Here you would use nodemailer or another email service to send the email
+    
         
         res.send('Password reset link sent to your email');
     } catch (error) {

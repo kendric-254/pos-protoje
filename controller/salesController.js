@@ -31,7 +31,7 @@ module.exports = {
     }
 },
 
-    // makeSale: async (req, res, next) => {
+
     //     try {
     //         let info = {
     //             quantity_sold: req.body.quantity_sold,
@@ -64,23 +64,5 @@ getAllSales: async (req, res, next) => {
     }
 },
 
-//     getAllSales: async (req, res, next) => {
-//     try {
-//         let getAllSales = await sales.findAll({
-//             include: [{ model: Game, attributes: ['game_name'] }],
-//             raw: true, 
-//             nest: true
-//         });
-//         getAllSales = getAllSales.map(sale => ({
-//             ...sale,
-//             game: { game_id: sale['Game.game_id'], game_name: sale['Game.game_name'] }
-//         }));
-//         getAllSales = getAllSales.map(({ Game, ...sale }) => sale);
-
-//         res.status(200).send(getAllSales);
-//     } catch (error) {
-//         next(error);
-//     }
-// },
 
 }
