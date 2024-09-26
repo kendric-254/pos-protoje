@@ -1,4 +1,4 @@
-// ForgotPasswordForm.jsx
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -36,7 +36,7 @@ const ForgotPasswordForm = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <form onSubmit={handleSubmit} className="flex flex-col bg-white p-52 rounded-lg shadow-md gap-5">
+      <form onSubmit={handleSubmit} className="flex flex-col bg-white p-10 rounded-lg shadow-md gap-5 w-96"> {/* Adjust width for better layout */}
         <h1 className="text-2xl text-center font-bold mb-4">Forgot Password</h1>
         <label className="block">Email</label>
         <input
@@ -45,6 +45,7 @@ const ForgotPasswordForm = () => {
           value={email}
           onChange={handleChange}
           className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
+          required // Add required attribute for better validation
         />
         <button
           type="submit"

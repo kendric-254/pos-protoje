@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-const MakeSaleForm = () => {
+const MakeProductSaleForm = () => {
     const [data, setFormData] = useState({
         quantity_sold: '',
         total_price: '',
-        game_id: '',
+        product_id: '', // Changed from game_id to product_id
         sale_date: new Date() 
     });
 
-    const [records, setGames] = useState([]);
-     const [receipt, setReceipt] = useState(null);
+    const [records, setProducts] = useState([]); // Changed from setGames to setProducts
+    const [receipt, setReceipt] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,13 +22,13 @@ const MakeSaleForm = () => {
         }));
     };
 
-    const getGames = async () => {
+    const getProducts = async () => { // Changed from getGames to getProducts
         try {
-            const response = await axios.get('http://localhost:4000/api/game/getAllGames');
-            setGames(response.data);
+            const response = await axios.get('http://localhost:4000/api/product/getAllProducts'); // Updated endpoint
+            setProducts(response.data);
         } catch (error) {
-            console.log('Error Getting Games', error);
-            toast.error('Error Getting Games', {
+            console.log('Error Getting Products', error);
+            toast.error('Error Getting Products', {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 3000
             });
@@ -36,76 +36,76 @@ const MakeSaleForm = () => {
     };
 
     useEffect(() => {
-        getGames();
+        getProducts();
     }, []);
 
-const makeSale = async (e) => {
-    e.preventDefault();
+    const makeProductSale = async (e) => { // Changed from makeSale to makeProductSale
+        e.preventDefault();
 
-    try {
-        const newData = { ...data, sale_date: new Date() }; 
+        try {
+            const newData = { ...data, sale_date: new Date() }; 
 
-        const response = await axios.post('http://localhost:4000/api/sale/makeSale', newData);
-        if (response.status === 200) {
-            toast.success('Sale Successful', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000
-            });
-               // Generate receipt
+            const response = await axios.post('http://localhost:4000/api/sale/makeProductSale', newData); // Updated endpoint
+            if (response.status === 200) {
+                toast.success('Sale Successful', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000
+                });
+                // Generate receipt
                 setReceipt({
                     ...response.data,
-                    company_name: "GAME BOX",
+                    company_name: "PRODUCT BOX", // Changed from GAME BOX to PRODUCT BOX
                     sale_date: new Date() 
                 });
-            setFormData({
-                quantity_sold: '',
-                total_price: '',
-                game_id: '',
-                sale_date: new Date() 
-            });
-        } else {
-            toast.error('Sale Failed', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000
-            });
+                setFormData({
+                    quantity_sold: '',
+                    total_price: '',
+                    product_id: '', // Changed from game_id to product_id
+                    sale_date: new Date() 
+                });
+            } else {
+                toast.error('Sale Failed', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000
+                });
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 400 && error.response.data.message === "Quantity sold exceeds quantity in stock") {
+                toast.error('Quantity sold exceeds quantity in stock', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000
+                });
+            } else {
+                console.error('Error making Sale', error);
+                toast.error('Sale Failed as something went wrong', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000
+                }); 
+            }
         }
-    } catch (error) {
-        if (error.response && error.response.status === 400 && error.response.data.message === "Quantity sold exceeds quantity in stock") {
-            toast.error('Quantity sold exceeds quantity in stock', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000
-            });
-        } else {
-            console.error('Error making Sale', error);
-            toast.error('Sale Failed as something went wrong', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 3000
-            }); 
-        }
-    }
-};
+    };
 
     return (
         <div className="w-full max-w-8xl max-h-full mx-auto mt-48 lg:mt-28 font-serif">
-            <div className="shadow-lg shadow-gray-900 rounded-lg p-10 lg:p-12  max-w-xl mt-28 lg:mt-1  mx-auto">
-                <form onSubmit={makeSale} className="">
+            <div className="shadow-lg shadow-gray-900 rounded-lg p-10 lg:p-12 max-w-xl mt-28 lg:mt-1 mx-auto">
+                <form onSubmit={makeProductSale} className="">
                     <div className="">
-                        <label className="block te text-lg font-bold mb-6" htmlFor="game">
-                            Welcome To Game Box
+                        <label className="block te text-lg font-bold mb-6" htmlFor="product">
+                            Welcome To Product Box
                         </label>
                         <select
                             className="bg-gray-100 shadow shadow-gray-200 appearance-none border border-gray-100 rounded-lg w-full py-3 px-4 te leading-tight focus:outline-none focus:shadow-outline mb-4"
-                            name="game_id"
-                            id="game"
-                            value={data.game_id}
+                            name="product_id" // Changed from game_id to product_id
+                            id="product" // Changed from game to product
+                            value={data.product_id}
                             onChange={handleChange}
                         >
                             <option key="" value="" className="px-10">
-                                Select Game
+                                Select Product
                             </option>
-                            {records.map((game) => (
-                                <option key={game.id} value={game.game_id}>
-                                    {game.game_name} - {game.price}
+                            {records.map((product) => ( // Changed from game to product
+                                <option key={product.id} value={product.product_id}>
+                                    {product.product_name} - {product.price} // Changed from game_name to product_name
                                 </option>
                             ))}
                         </select>
@@ -164,7 +164,7 @@ const makeSale = async (e) => {
                 </form>
             </div>
 
-            {/* Display Receipt for games */}
+            {/* Display Receipt for products */}
 
             {receipt && (
                 <div className="bg-white shadow-2xl rounded-lg p-8 mb-4">
@@ -181,17 +181,17 @@ const makeSale = async (e) => {
                         <p className="font-semibold">Total Price:</p>
                         <p>KES {receipt.total_price}</p>
                     </div>
-                     <div className="flex justify-between mb-4">
+                    <div className="flex justify-between mb-4">
                         <p className="font-semibold">Date :</p>
-                           <p>{new Date(receipt.sale_date).toLocaleDateString()}</p>
+                        <p>{new Date(receipt.sale_date).toLocaleDateString()}</p>
                     </div>
                     <hr className="border-gray-400 my-4" />
                     <p className="text-sm text-center">Thank you for choosing our store! We hope you enjoy your purchase.</p>
                 </div>
             )}
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 }
 
-export default MakeSaleForm;
+export default MakeProductSaleForm;

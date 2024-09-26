@@ -1,4 +1,3 @@
-// ResetPasswordForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,46 +7,38 @@ import { useParams, useHistory } from 'react-router-dom';
 const ResetPasswordForm = () => {
   const { token } = useParams();
   const history = useHistory();
-  const [data, setData] = useState({
+  const [formData, setFormData] = useState({
     password: '',
     confirmPassword: ''
   });
+  const [loading, setLoading] = useState(false); // Loading state
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData(prev => ({
+    setFormData(prev => ({
       ...prev, [name]: value
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (data.password !== data.confirmPassword) {
-      toast.error('Passwords do not match', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000
-      });
+    if (formData.password !== formData.confirmPassword) {
+      toast.error('Passwords do not match');
       return;
     }
+    setLoading(true);
     try {
-      const response = await axios.post(`http://localhost:4000/api/user/resetPassword/${token}`, { password: data.password });
+      const response = await axios.post(`http://localhost:4000/api/user/resetPassword/${token}`, { password: formData.password });
       if (response.status === 200) {
-        toast.success('Password reset successfully', {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-        });
+        toast.success('Password reset successfully');
         history.replace('/loginUser');
       } else {
-        toast.error('Password reset failed', {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-        });
+        toast.error('Password reset failed');
       }
     } catch (error) {
-      toast.error('Error resetting password', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000,
-      });
+      toast.error('Error resetting password');
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -60,7 +51,7 @@ const ResetPasswordForm = () => {
           type="password"
           placeholder="Enter new password"
           name="password"
-          value={data.password}
+          value={formData.password}
           onChange={handleChange}
           className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         />
@@ -69,15 +60,16 @@ const ResetPasswordForm = () => {
           type="password"
           placeholder="Confirm new password"
           name="confirmPassword"
-          value={data.confirmPassword}
+          value={formData.confirmPassword}
           onChange={handleChange}
           className="input-field mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500"
         />
         <button
           type="submit"
           className="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-5"
+          disabled={loading}
         >
-          Reset Password
+          {loading ? 'Resetting...' : 'Reset Password'}
         </button>
         <ToastContainer />
       </form>

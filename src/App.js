@@ -1,52 +1,55 @@
-import React from "react";
+import React from "react"; 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./components/NavBar";
-import Home from "./components/Home";
-import Sidebar from "./components/sideBar";
-import SalesPage from "./components/sales";
+import HomePage from "./components/HomePage";
+import SideBar from "./components/sideBar";
+import DisplaySales from "./components/DisplaySales";
 import { AuthProvider, useAuth } from "./components/AuthContext";
-import LoginForm from "./components/loginAdmin";
-import RegistrationForm from "./components/registerForm";
-import ReportsData from "./components/reportForm";
-import UserForm from "./components/userRegForm";
-import LoginUserForm from "./components/loginUser";
-import MakeSaleForm from "./components/customers";
+import DataPage from "./components/DataPage";
+import DeleteProduct from "./components/DeleteProduct";
+import LoginAdminForm from "./components/loginAdminForm";
+import RegistrationForm from "./components/RegistrationForm";
+import ResetPasswordForm from "./components/ResetPasswordForm";
+import UserRegestrationForm from "./components/UserRegestrationForm";
+import LoginUserForm from "./components/loginUserForm";
+import ForgotPassword from "./components/ForgotPassword";
+import EditProduct from "./components/EditProduct";
+import ProductShop from "./components/ProductShop";
 import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
-import DataPage from "./components/Data";
-import ForgotPasswordForm from "./components/ForgotPassword";
-import ResetPasswordForm from "./components/ResetPassword";
+
 function App() {
   return (
     <AuthProvider>
       <AppContent />
-      <ToastContainer/>
+      <ToastContainer />
     </AuthProvider>
   );
 }
+
 function AppContent() {
-  const { isLoggedIn, userRole } = useAuth(); // Update useAuth to include userRole
+  const { isLoggedIn, userRole } = useAuth();
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/loginAdmin">
-          <LoginForm />
+          <LoginAdminForm />
         </Route>
         <Route path="/registerForm">
           <RegistrationForm />
         </Route>
         <Route path="/loginUser">
-          <LoginUserForm/>
+          <LoginUserForm />
         </Route>
-        <Route path="/userRegForm">
-          <UserForm/>
+        <Route path="/userRegestration">
+          <UserRegestrationForm />
         </Route>
-        <Route path="/ForgotPassword">
-          <ForgotPasswordForm/>
+        <Route path="/forgotPassword">
+          <ForgotPassword />
         </Route>
-        <Route path="/ResetPassword">
-          <ResetPasswordForm/>
+        <Route path="/resetPassword">
+          <ResetPasswordForm />
         </Route>
         <Route path="/">
           {isLoggedIn ? (
@@ -67,24 +70,27 @@ function AppContent() {
 function AdminDashboard() {
   return (
     <div>
-      <Sidebar />
+      <SideBar />
       <div className="flex-grow ml-0 lg:ml-60 bg-blue-gray-900">
         <Navbar />
         <Switch>
           <Route exact path="/dashboard">
-            <Home/>
+            <HomePage />
           </Route>
           <Route path="/sales">
-            <SalesPage />
+            <DisplaySales />
           </Route>
-          <Route path="/reportForm">
-            <ReportsData />
+          <Route path="/editProduct/:id">
+            <EditProduct />
           </Route>
-           <Route path="/customers">
-            <MakeSaleForm/>
+          <Route path="/deleteProduct/:id">
+            <DeleteProduct />
           </Route>
-          <Route path="/Data">
-            <DataPage/>
+          <Route path="/dataPage">
+            <DataPage />
+          </Route>
+          <Route path="/productShop">
+            <ProductShop />
           </Route>
           <Redirect to="/dashboard" />
         </Switch>
@@ -96,20 +102,20 @@ function AdminDashboard() {
 function UserDashboard() {
   return (
     <div>
-      <Sidebar />
+      <SideBar />
       <div className="flex-grow ml-0 lg:ml-60 bg-blue-gray-900">
         <Navbar />
         <Switch>
           <Route exact path="/dashboard">
-            <Home/>
+            <HomePage /> {/* Ensure this points to the correct component */}
           </Route>
           <Route path="/sales">
-            <SalesPage />
+            <DisplaySales />
           </Route>
-          <Route path="/customers">
-            <MakeSaleForm/>
+          <Route path="/productShop">
+            <ProductShop />
           </Route>
-          {/* <Redirect to="/sales" /> */}
+          {/* Add any other user-specific routes here if needed */}
         </Switch>
       </div>
     </div>
@@ -117,6 +123,3 @@ function UserDashboard() {
 }
 
 export default App;
-
-
-

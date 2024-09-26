@@ -15,6 +15,7 @@ const DataPage = () => {
                 const response = await axios.get('http://localhost:4000/api/sale/getAllSales');
                 const salesData = response.data;
 
+                // Filter sales by sale date if provided
                 let filteredSales = salesData;
                 if (saleDate) {
                     filteredSales = salesData.filter(sale => {
@@ -24,16 +25,17 @@ const DataPage = () => {
                     });
                 }
 
-                const salesWithGameData = await Promise.all(filteredSales.map(async sale => {
-                    const gameResponse = await axios.get(`http://localhost:4000/api/game/getGame/${sale.game_id}`);
+                // Fetch product data for each sale
+                const salesWithProductData = await Promise.all(filteredSales.map(async sale => {
+                    const productResponse = await axios.get(`http://localhost:4000/api/product/getProduct/${sale.product_id}`);
                     return {
                         ...sale,
-                        game_name: gameResponse.data.game_name,
-                        image: gameResponse.data.image
+                        product_name: productResponse.data.product_name,
+                        image: productResponse.data.image
                     };
                 }));
 
-                setSales(salesWithGameData);
+                setSales(salesWithProductData);
             } catch (error) {
                 console.error('Error fetching sales', error);
             }
@@ -48,9 +50,9 @@ const DataPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {sales.map(sale => (
                     <div key={sale.id} className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
-                        <img src={sale.image} alt={sale.game_name} className="w-full h-48 object-cover" />
+                        <img src={sale.image} alt={sale.product_name} className="w-full h-48 object-cover" />
                         <div className="p-4 flex flex-col flex-grow">
-                            <h3 className="text-lg font-semibold mb-2">{sale.game_name}</h3>
+                            <h3 className="text-lg font-semibold mb-2">{sale.product_name}</h3>
                             <p><strong>Quantity Sold:</strong> {sale.quantity_sold}</p>
                             <p><strong>Total Price:</strong> {sale.total_price}</p>
                             <p><strong>Sale Date:</strong> {new Date(sale.sale_date).toLocaleDateString()}</p>
