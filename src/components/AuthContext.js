@@ -1,7 +1,9 @@
 import React, { createContext, useState, useContext } from 'react';
 
+// Create Auth Context
 export const AuthContext = createContext();
 
+// AuthProvider Component
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState(null); // Initialize userRole state
@@ -17,12 +19,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, userRole }}> {/* Provide userRole in context */}
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, userRole }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// Custom Hook to use Auth Context
 export const useAuth = () => {
   const authContext = useContext(AuthContext);
 
