@@ -1,4 +1,5 @@
-const bcrypt  = require('bcrypt')
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
     const Admin = sequelize.define('admins', {
         admin_id: {
@@ -14,25 +15,29 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         }
-    })
+    });
 
-    Admin.beforeCreate(async (admins) => {
+    // Hash the password before creating a new admin
+    Admin.beforeCreate(async (admin) => {
         try {
             const salt = await bcrypt.genSalt(16);
-            const hashedPwd = await bcrypt.hash(admins.password, salt)
-            admins.password = hashedPwd;
+            const hashedPwd = await bcrypt.hash(admin.password, salt);
+            admin.password = hashedPwd; // Set the hashed password
         } catch (error) {
-            throw new Error('Error encrypting Password')
+            console.error('Error encrypting Password:', error);
+            throw new Error('Error encrypting Password');
         }
-    })
+    });
 
-    Admin.prototype.isValidPassword = async function
-        (password) { 
+    // Method to validate the password
+    Admin.prototype.isValidPassword = async function(password) {
         try {
-            return await bcrypt.compare(password, this.password)
+            return await bcrypt.compare(password, this.password);
         } catch (error) {
-            throw new Error('Error validating password')
+            console.error('Error validating password:', error);
+            throw new Error('Error validating password');
         }
-    }
-    return Admin
-}
+    };
+
+    return Admin;
+};

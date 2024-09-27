@@ -13,12 +13,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        sale_date : {
+        sale_date: {
             type: DataTypes.DATE,
             allowNull: false
         }
-    })
+    });
 
-    return Sale
-    // module.exports = { Sale }
+    return Sale;
 }
